@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Vanish Party — anonymous, self-erasing chat</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- JOIN SCREEN -->
+  <main id="join-screen" class="screen">
+    <div class="join-card">
+      <div class="mark">◌</div>
+      <h1>vanish<span class="dot">·</span>party</h1>
+      <p class="tagline">No names. No history. Say the same word, land in the same room.</p>
+
+      <form id="join-form" autocomplete="off">
+        <label for="word-input">The word</label>
+        <input id="word-input" name="word" type="text" placeholder="e.g. driftwood" maxlength="60" required>
+        <button type="submit">Enter the party</button>
+      </form>
+
+      <p class="fine-print">Everything you type disappears for everyone every <strong>20 seconds</strong>. Close this tab and it's gone for good.</p>
+    </div>
+  </main>
+
+  <!-- CHAT SCREEN -->
+  <main id="chat-screen" class="screen hidden">
+    <header class="chat-header">
+      <div class="room-info">
+        <span class="room-label">room</span>
+        <span id="room-word" class="room-word"></span>
+      </div>
+
+      <div class="burn-ring" id="burn-ring" title="Time until this chat clears">
+        <svg viewBox="0 0 40 40">
+          <circle class="ring-track" cx="20" cy="20" r="17"></circle>
+          <circle class="ring-progress" id="ring-progress" cx="20" cy="20" r="17"></circle>
+        </svg>
+        <span id="ring-seconds">20</span>
+      </div>
+
+      <div class="presence">
+        <span id="presence-count">1</span> here
+      </div>
+    </header>
+
+    <div id="messages" class="messages" aria-live="polite"></div>
+
+    <form id="chat-form" class="composer" autocomplete="off">
+      <input id="chat-input" type="text" placeholder="Say something before it's gone…" maxlength="1000" required>
+      <button type="submit" aria-label="Send">Send</button>
+    </form>
+
+    <button id="leave-btn" class="leave-btn">Leave &amp; watch something else</button>
+  </main>
+
+<script src="client.js"></script>
+</body>
+</html>
